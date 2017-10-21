@@ -13,13 +13,10 @@ db.on('error', err => {
 })
 
 db.once('open', () => {
-  console.log('we are connected')
-  User.findById('59d8b62d761b013137c71025', (err, user) => {
-    console.log('result', err, user)
+  User.findUserByName('alex', (err, user) => {
+    console.log(err, user)
+    user.findSimilarUsersByCountry((err, users) => {
+      console.log(err, users)
+    })
   })
-  // const user = new User({name: 'Alex'})
-  // console.log('user', user)
-  // user.save((err, createdUser) => {
-  //   console.log('result', err, createdUser)
-  // })
 })
